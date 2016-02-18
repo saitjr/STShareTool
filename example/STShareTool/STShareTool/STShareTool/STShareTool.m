@@ -23,15 +23,18 @@
 
 + (void)initialize {
     [super initialize];
-    [UMSocialData setAppKey:STShareUMAppKey];
-    // 设置微信
-    [UMSocialWechatHandler setWXAppId:STShareWechatAppId appSecret:STShareWechatAppSecret url:STShareURL];
-    // 设置QQ
-    [UMSocialQQHandler setQQWithAppId:STShareQQAppId appKey:STShareQQAppKey url:STShareURL];
-    // 设置微博
-    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:STShareWeiboAppKey secret:STShareWeiboAppSecret RedirectURL:STShareWeiboCallbackURL];
-    // 其他配置
-    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline]];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [UMSocialData setAppKey:STShareUMAppKey];
+        // 设置微信
+        [UMSocialWechatHandler setWXAppId:STShareWechatAppId appSecret:STShareWechatAppSecret url:STShareURL];
+        // 设置QQ
+        [UMSocialQQHandler setQQWithAppId:STShareQQAppId appKey:STShareQQAppKey url:STShareURL];
+        // 设置微博
+        [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:STShareWeiboAppKey secret:STShareWeiboAppSecret RedirectURL:STShareWeiboCallbackURL];
+        // 其他配置（因为没有用友盟默认的，所以该设置无效）
+        [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline]];
+    });
 }
 
 + (void)presentShareViewController:(NSDictionary *)shareContent {

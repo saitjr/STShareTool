@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "STShareTool.h"
-#import "UMSocial.h"
 
 @interface ViewController ()
 
