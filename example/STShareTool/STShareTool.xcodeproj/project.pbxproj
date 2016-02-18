@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9660E90C1C75FAB000443508 /* STShareResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9660E90B1C75FAB000443508 /* STShareResources.bundle */; };
 		96C0EE3A1C747DE700003D69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C0EE391C747DE700003D69 /* main.m */; };
 		96C0EE3D1C747DE700003D69 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C0EE3C1C747DE700003D69 /* AppDelegate.m */; };
 		96C0EE401C747DE700003D69 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C0EE3F1C747DE700003D69 /* ViewController.m */; };
@@ -43,14 +44,10 @@
 		96C0EEAC1C74B99500003D69 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C0EEAB1C74B99500003D69 /* libz.tbd */; };
 		96C0EEAF1C74C75100003D69 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96C0EEAE1C74C75100003D69 /* ImageIO.framework */; };
 		96C0EEB21C74C9F100003D69 /* STShareActivities.m in Sources */ = {isa = PBXBuildFile; fileRef = 96C0EEB11C74C9F100003D69 /* STShareActivities.m */; };
-		96C0F0D21C75C55000003D69 /* sns_icon_05.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96C0F0D11C75C55000003D69 /* sns_icon_05.jpg */; };
-		96C0F0D41C75C55700003D69 /* sns_icon_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96C0F0D31C75C55700003D69 /* sns_icon_01.jpg */; };
-		96C0F0D61C75C55D00003D69 /* sns_icon_02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96C0F0D51C75C55D00003D69 /* sns_icon_02.jpg */; };
-		96C0F0D81C75C56400003D69 /* sns_icon_03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96C0F0D71C75C56400003D69 /* sns_icon_03.jpg */; };
-		96C0F0DA1C75C56C00003D69 /* sns_icon_04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 96C0F0D91C75C56C00003D69 /* sns_icon_04.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9660E90B1C75FAB000443508 /* STShareResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = STShareResources.bundle; sourceTree = "<group>"; };
 		96C0EE351C747DE700003D69 /* STShareTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = STShareTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96C0EE391C747DE700003D69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		96C0EE3B1C747DE700003D69 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -121,11 +118,6 @@
 		96C0EEAE1C74C75100003D69 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		96C0EEB01C74C9F100003D69 /* STShareActivities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STShareActivities.h; sourceTree = "<group>"; };
 		96C0EEB11C74C9F100003D69 /* STShareActivities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STShareActivities.m; sourceTree = "<group>"; };
-		96C0F0D11C75C55000003D69 /* sns_icon_05.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sns_icon_05.jpg; sourceTree = "<group>"; };
-		96C0F0D31C75C55700003D69 /* sns_icon_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sns_icon_01.jpg; sourceTree = "<group>"; };
-		96C0F0D51C75C55D00003D69 /* sns_icon_02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sns_icon_02.jpg; sourceTree = "<group>"; };
-		96C0F0D71C75C56400003D69 /* sns_icon_03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sns_icon_03.jpg; sourceTree = "<group>"; };
-		96C0F0D91C75C56C00003D69 /* sns_icon_04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sns_icon_04.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,7 +196,7 @@
 				96C0EE511C747E0C00003D69 /* STShareTool.m */,
 				96C0EEB01C74C9F100003D69 /* STShareActivities.h */,
 				96C0EEB11C74C9F100003D69 /* STShareActivities.m */,
-				96C0EEB31C757E5900003D69 /* STShareResources */,
+				9660E90B1C75FAB000443508 /* STShareResources.bundle */,
 				96C0EE531C74801E00003D69 /* UMSocial_Sdk_5.0 */,
 				96C0EE6E1C74801E00003D69 /* UMSocial_Sdk_Extra_Frameworks */,
 			);
@@ -327,18 +319,6 @@
 			name = framework;
 			sourceTree = "<group>";
 		};
-		96C0EEB31C757E5900003D69 /* STShareResources */ = {
-			isa = PBXGroup;
-			children = (
-				96C0F0D91C75C56C00003D69 /* sns_icon_04.jpg */,
-				96C0F0D71C75C56400003D69 /* sns_icon_03.jpg */,
-				96C0F0D51C75C55D00003D69 /* sns_icon_02.jpg */,
-				96C0F0D11C75C55000003D69 /* sns_icon_05.jpg */,
-				96C0F0D31C75C55700003D69 /* sns_icon_01.jpg */,
-			);
-			path = STShareResources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -400,23 +380,19 @@
 			files = (
 				96C0EE8F1C74801E00003D69 /* UMShareEditViewController.xib in Resources */,
 				96C0EE8D1C74801E00003D69 /* UMSCommentInputController.xib in Resources */,
-				96C0F0D41C75C55700003D69 /* sns_icon_01.jpg in Resources */,
 				96C0EE481C747DE700003D69 /* LaunchScreen.storyboard in Resources */,
 				96C0EE9A1C74801E00003D69 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
-				96C0F0DA1C75C56C00003D69 /* sns_icon_04.jpg in Resources */,
-				96C0F0D81C75C56400003D69 /* sns_icon_03.jpg in Resources */,
+				9660E90C1C75FAB000443508 /* STShareResources.bundle in Resources */,
 				96C0EE8C1C74801E00003D69 /* UMSCommentDetailController.xib in Resources */,
 				96C0EE911C74801E00003D69 /* UMSLoginViewController.xib in Resources */,
 				96C0EE8E1C74801E00003D69 /* UMSCommentInputControlleriPad.xib in Resources */,
 				96C0EE901C74801E00003D69 /* UMShareEditViewControlleriPad.xib in Resources */,
-				96C0F0D61C75C55D00003D69 /* sns_icon_02.jpg in Resources */,
 				96C0EE451C747DE700003D69 /* Assets.xcassets in Resources */,
 				96C0EE8A1C74801E00003D69 /* UMSocialLocalizable.strings in Resources */,
 				96C0EE431C747DE700003D69 /* Main.storyboard in Resources */,
 				96C0EE921C74801E00003D69 /* UMSnsAccountViewController.xib in Resources */,
 				96C0EE971C74801E00003D69 /* WeiboSDK.bundle in Resources */,
 				96C0EE931C74801E00003D69 /* UMSShareListController.xib in Resources */,
-				96C0F0D21C75C55000003D69 /* sns_icon_05.jpg in Resources */,
 				96C0EE941C74801E00003D69 /* UMSocialSDKResourcesNew.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
