@@ -65,7 +65,7 @@
 @implementation STQQActivity
 
 - (UIImage *)activityImage {
-    return [UIImage imageNamed:@"sns_icon_01.jpg"];
+    return [UIImage imageNamed:@"STShareResources.bundle/sns_icon_01.jpg"];
 }
 
 - (NSString *)activityTitle {
@@ -83,7 +83,7 @@
 @implementation STQZoneActivity
 
 - (UIImage *)activityImage {
-    return [UIImage imageNamed:@"sns_icon_02.jpg"];
+    return [UIImage imageNamed:@"STShareResources.bundle/sns_icon_02.jpg"];
 }
 
 - (NSString *)activityTitle {
@@ -101,7 +101,7 @@
 @implementation STWeChatSessionActivity
 
 - (UIImage *)activityImage {
-    return [UIImage imageNamed:@"sns_icon_03.jpg"];
+    return [UIImage imageNamed:@"STShareResources.bundle/sns_icon_03.jpg"];
 }
 
 - (NSString *)activityTitle {
@@ -119,7 +119,7 @@
 @implementation STWeChatTimelineActivity
 
 - (UIImage *)activityImage {
-    return [UIImage imageNamed:@"sns_icon_04.jpg"];
+    return [UIImage imageNamed:@"STShareResources.bundle/sns_icon_04.jpg"];
 }
 
 - (NSString *)activityTitle {
@@ -141,7 +141,7 @@
 @implementation STWeiboActivity
 
 - (UIImage *)activityImage {
-    return [UIImage imageNamed:@"sns_icon_05.jpg"];
+    return [UIImage imageNamed:@"STShareResources.bundle/sns_icon_05.jpg"];
 }
 
 - (NSString *)activityTitle {

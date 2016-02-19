@@ -17,11 +17,11 @@ static NSString * const STShareURLKey = @"STShareURLKey"; ///< 分享 url 的 ke
 static NSString * const STShareTitle = @"SwiftGG"; ///< 分享的标题
 static NSString * const STShareURL = @"http://www.swift.gg"; ///< 分享的url，实际没用到，写在这占位
 
-static NSString * const STShareQQAppId = @"";
-static NSString * const STShareQQAppKey = @"";
+static NSString * const STShareQQAppId = @"1105183300";
+static NSString * const STShareQQAppKey = @"7xG5PEYoHCx41Es6";
 
-static NSString * const STShareWeiboAppKey = @"";
-static NSString * const STShareWeiboAppSecret = @"";
+static NSString * const STShareWeiboAppKey = @"2862032238";
+static NSString * const STShareWeiboAppSecret = @"2a61af7b29c8562fe440226364cea0b6";
 static NSString * const STShareWeiboCallbackURL = @"http://sns.whalecloud.com/sina2/callback"; ///< 微博回调的 url，就是微博申请高级信息里面那个
 
 static NSString * const STShareWechatAppId = @"";
