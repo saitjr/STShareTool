@@ -37,7 +37,7 @@
     });
 }
 
-+ (void)presentShareViewController:(NSDictionary *)shareContent {
++ (void)presentShareViewController:(NSDictionary *)shareContent sender:(UIView *)sender {
     
     NSArray *activityClasses = @[[STQQActivity class], [STQZoneActivity class], [STWeChatSessionActivity class], [STWeChatTimelineActivity class], [STWeiboActivity class]];
     NSMutableArray *activities = [NSMutableArray new];
@@ -55,6 +55,11 @@
     UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:activities];
     
     activityViewController.excludedActivityTypes = @[UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypePostToWeibo, UIActivityTypeMessage, UIActivityTypeMail, UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo, UIActivityTypeAirDrop, UIActivityTypeOpenInIBooks];
+    
+    if ( [activityViewController respondsToSelector:@selector(popoverPresentationController)] ) {
+        activityViewController.popoverPresentationController.sourceView = sender.superview;
+        activityViewController.popoverPresentationController.sourceRect = sender.frame;
+    }
     
     [STSHARE_ROOT_VC presentViewController:activityViewController animated:YES completion:NULL];
 }

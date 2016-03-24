@@ -11,6 +11,8 @@
 
 @interface ViewController ()
 
+- (IBAction)popoverButtonTapped:(UIButton *)sender;
+
 @end
 
 @implementation ViewController
@@ -20,12 +22,11 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
+- (IBAction)popoverButtonTapped:(UIButton *)sender {
     NSDictionary *shareContent = @{STShareContentKey : @"SwiftGG 最帅",
                                    STShareImageKey : [UIImage imageNamed:@"60"],
                                    STShareURLKey : @"http://www.swift.gg"};
-    [STShareTool presentShareViewController:shareContent];
+    [STShareTool presentShareViewController:shareContent sender:sender];
 }
 
 @end

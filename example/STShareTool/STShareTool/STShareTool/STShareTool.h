@@ -6,7 +6,7 @@
 //  Copyright © 2016 tangjr. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 #define STSHARE_ROOT_VC ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController
 
@@ -27,7 +27,7 @@ static NSString * const STShareWeiboCallbackURL = @"http://sns.whalecloud.com/si
 static NSString * const STShareWechatAppId = @"";
 static NSString * const STShareWechatAppSecret = @"";
 
-static NSString * const STShareUMAppKey = @"";
+static NSString * const STShareUMAppKey = @"507fcab25270157b37000010";
 
 @interface STShareTool : NSObject
 
@@ -37,6 +37,9 @@ static NSString * const STShareUMAppKey = @"";
 + (void)shareToWeChatTimeline:(NSDictionary *)shareContent;
 + (void)shareToWeibo:(NSDictionary *)shareContent;
 
-+ (void)presentShareViewController:(NSDictionary *)shareContent;
+// 两个参数分别是
+// shareContent: key 为 STShareImageKey、STShareContentKey、STShareURLKey 的字典
+// sender 为触发事件的视图（因为在 iPad 上 activity 必须要装到 popover 中），iPhone sender 参数可为 nil
++ (void)presentShareViewController:(NSDictionary *)shareContent sender:(UIView *)sender;
 
 @end
