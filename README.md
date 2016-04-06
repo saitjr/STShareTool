@@ -137,7 +137,7 @@ static NSString * const STShareUMAppKey = @"";
 NSDictionary *shareContent = @{STShareContentKey : @"SwiftGG 最帅",
                                STShareImageKey : [UIImage imageNamed:@"60"],
                                STShareURLKey : @"http://www.swift.gg"};
-[STShareTool presentShareViewController:shareContent];
+[STShareTool presentShareViewController:shareContent sender:sender];
 ```
 
 ### 自定义界面
