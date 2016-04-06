@@ -77,18 +77,12 @@
 + (void)shareToWeChatSession:(NSDictionary *)shareContent {
     [UMSocialData defaultData].extConfig.wechatSessionData.url = STSHARE_URL;
     [UMSocialData defaultData].extConfig.wechatSessionData.title = STShareTitle;
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:STSHARE_ROOT_VC completion:nil];
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:STSHARE_ROOT_VC completion:NULL];
 }
 
 + (void)shareToWeChatTimeline:(NSDictionary *)shareContent {
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = STSHARE_URL;
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = STShareTitle;
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
     [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:STSHARE_ROOT_VC completion:nil];
 }
 

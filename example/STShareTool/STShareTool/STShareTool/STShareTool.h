@@ -24,8 +24,8 @@ static NSString * const STShareWeiboAppKey = @"2862032238";
 static NSString * const STShareWeiboAppSecret = @"2a61af7b29c8562fe440226364cea0b6";
 static NSString * const STShareWeiboCallbackURL = @"http://sns.whalecloud.com/sina2/callback"; ///< 微博回调的 url，就是微博申请高级信息里面那个
 
-static NSString * const STShareWechatAppId = @"";
-static NSString * const STShareWechatAppSecret = @"";
+static NSString * const STShareWechatAppId = @"wx133f6244ca123bb6";
+static NSString * const STShareWechatAppSecret = @"ce54fbb731edd5f9f50b12ca8d864405";
 
 static NSString * const STShareUMAppKey = @"507fcab25270157b37000010";
 
