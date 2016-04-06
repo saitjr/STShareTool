@@ -156,6 +156,22 @@ NSDictionary *shareContent = @{STShareContentKey : @"SwiftGG 最帅",
 
 对，你没看错，全都是类方法，直接用 `STShareTool` 进行调用，并且！命名都一毛一样有木有，全都是 `shareTo...`，所以，可以用循环来 `performSelector` 。
 
+## 回调
+
+在未安装微博的情况下，如果出现点击分享，跳转 Web 微博，点击关闭返回 app 时 crash 这个问题。那么在 appdelegate 中实现以下两个回调方法即可（貌似是因为友盟版本不同，未安装微博的处理方式也不同，如果出现这个问题，就用以下方法好了）：
+
+```objective-c
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return YES;
+}
+```
+
+多谢 [@CMB](https://github.com/chenmingbiao) 发现并解决的这个问题。
+
 ## 最后
 
 三方分享还有问题吗？有问题提 issue 啊！
