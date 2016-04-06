@@ -150,11 +150,11 @@
 		963A86431CB4BE91003875A8 /* STShareTool */ = {
 			isa = PBXGroup;
 			children = (
+				963A86471CB4BE91003875A8 /* STShareTool.h */,
+				963A86481CB4BE91003875A8 /* STShareTool.m */,
 				963A86441CB4BE91003875A8 /* STShareActivities.h */,
 				963A86451CB4BE91003875A8 /* STShareActivities.m */,
 				963A86461CB4BE91003875A8 /* STShareResources.bundle */,
-				963A86471CB4BE91003875A8 /* STShareTool.h */,
-				963A86481CB4BE91003875A8 /* STShareTool.m */,
 				963A86491CB4BE91003875A8 /* UMSocial_Sdk_5.0 */,
 				963A86641CB4BE91003875A8 /* UMSocial_Sdk_Extra_Frameworks */,
 			);
@@ -280,8 +280,8 @@
 		96C0EE371C747DE700003D69 /* STShareTool */ = {
 			isa = PBXGroup;
 			children = (
-				963A86431CB4BE91003875A8 /* STShareTool */,
 				96C0EEAD1C74B9A000003D69 /* framework */,
+				963A86431CB4BE91003875A8 /* STShareTool */,
 				96C0EE3B1C747DE700003D69 /* AppDelegate.h */,
 				96C0EE3C1C747DE700003D69 /* AppDelegate.m */,
 				96C0EE3E1C747DE700003D69 /* ViewController.h */,
