@@ -11,7 +11,6 @@
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
 #import "UMSocialSinaSSOHandler.h"
-#import "STShareActivities.h"
 #import <MessageUI/MessageUI.h>
 
 #define STSHARE_IMAGE shareContent[STShareImageKey]
