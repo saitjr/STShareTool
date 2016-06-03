@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define STSHARE_ROOT_VC ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController
-
 static NSString * const STShareImageKey = @"STShareImageKey"; ///< 分享图片的 key （传入的是字典，所以这个作为key）（image 是 UIImage）
 static NSString * const STShareContentKey = @"STShareContentKey"; ///< 分享内容的 key （content 是 NSString 的）
 static NSString * const STShareURLKey = @"STShareURLKey"; ///< 分享 url 的 key （url 是 NSString 的）
@@ -31,15 +29,12 @@ static NSString * const STShareUMAppKey = @"507fcab25270157b37000010";
 
 @interface STShareTool : NSObject
 
-+ (void)shareToQQ:(NSDictionary *)shareContent;
-+ (void)shareToQZone:(NSDictionary *)shareContent;
-+ (void)shareToWeChatSession:(NSDictionary *)shareContent;
-+ (void)shareToWeChatTimeline:(NSDictionary *)shareContent;
-+ (void)shareToWeibo:(NSDictionary *)shareContent;
++ (instancetype)toolWithViewController:(UIViewController *)viewController;
 
-// 两个参数分别是
-// shareContent: key 为 STShareImageKey、STShareContentKey、STShareURLKey 的字典
-// sender 为触发事件的视图（因为在 iPad 上 activity 必须要装到 popover 中），iPhone sender 参数可为 nil
-+ (void)presentShareViewController:(NSDictionary *)shareContent sender:(UIView *)sender;
+- (void)shareToQQ:(NSDictionary *)shareContent;
+- (void)shareToQZone:(NSDictionary *)shareContent;
+- (void)shareToWeChatSession:(NSDictionary *)shareContent;
+- (void)shareToWeChatTimeline:(NSDictionary *)shareContent;
+- (void)shareToWeibo:(NSDictionary *)shareContent;
 
 @end

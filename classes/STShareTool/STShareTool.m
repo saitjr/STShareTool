@@ -12,12 +12,18 @@
 #import "UMSocialWechatHandler.h"
 #import "UMSocialSinaSSOHandler.h"
 #import "STShareActivities.h"
-#import "AppDelegate.h"
+#import <MessageUI/MessageUI.h>
 
 #define STSHARE_IMAGE shareContent[STShareImageKey]
-#define STSHARE_CONTENT [NSString stringWithFormat:@"%@ %@", shareContent[STShareContentKey], STSHARE_URL]
+#define STSHARE_CONTENT shareContent[STShareContentKey]
 #define STSHARE_URL shareContent[STShareURLKey]
 #define STSHARE_CONCAT_METHOD_NAME(name) [NSString stringWithFormat:@"shareTo%@:", name]
+
+@interface STShareTool () <MFMessageComposeViewControllerDelegate>
+
+@property (weak, nonatomic) UIViewController *viewController;
+
+@end
 
 @implementation STShareTool
 
@@ -30,65 +36,68 @@
         [UMSocialWechatHandler setWXAppId:STShareWechatAppId appSecret:STShareWechatAppSecret url:STShareURL];
         // 设置QQ
         [UMSocialQQHandler setQQWithAppId:STShareQQAppId appKey:STShareQQAppKey url:STShareURL];
-        // 设置微博
-        [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:STShareWeiboAppKey secret:STShareWeiboAppSecret RedirectURL:STShareWeiboCallbackURL];
         // 其他配置（因为没有用友盟默认的，所以该设置无效）
         [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline]];
     });
 }
 
-+ (void)presentShareViewController:(NSDictionary *)shareContent sender:(UIView *)sender {
-    
-    NSArray *activityClasses = @[[STQQActivity class], [STQZoneActivity class], [STWeChatSessionActivity class], [STWeChatTimelineActivity class], [STWeiboActivity class]];
-    NSMutableArray *activities = [NSMutableArray new];
-    
-    for (Class class in activityClasses) {
-        STBaseActivity *activity = [class new];
-        activity.action = ^(NSString *platform) {
-            NSString *methodName = STSHARE_CONCAT_METHOD_NAME(platform);
-            SEL methodSEL = NSSelectorFromString(methodName);
-            [STShareTool performSelector:methodSEL withObject:shareContent withObject:nil];
-        };
-        [activities addObject:activity];
-    }
-    NSArray* itemsToShare = @[STSHARE_CONTENT, [NSURL URLWithString:STSHARE_URL], STSHARE_IMAGE];
-    UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:activities];
-    
-    activityViewController.excludedActivityTypes = @[UIActivityTypePostToFacebook, UIActivityTypePostToTwitter, UIActivityTypePostToWeibo, UIActivityTypeMessage, UIActivityTypeMail, UIActivityTypePrint, UIActivityTypeCopyToPasteboard, UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr, UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo, UIActivityTypeAirDrop, UIActivityTypeOpenInIBooks];
-    
-    if ( [activityViewController respondsToSelector:@selector(popoverPresentationController)] ) {
-        activityViewController.popoverPresentationController.sourceView = sender.superview;
-        activityViewController.popoverPresentationController.sourceRect = sender.frame;
-    }
-    
-    [STSHARE_ROOT_VC presentViewController:activityViewController animated:YES completion:NULL];
++ (instancetype)toolWithViewController:(UIViewController *)viewController {
+    STShareTool *tool = [STShareTool new];
+    tool.viewController = viewController;
+    return tool;
 }
 
-+ (void)shareToQQ:(NSDictionary *)shareContent {
+- (void)shareToQQ:(NSDictionary *)shareContent {
     [UMSocialData defaultData].extConfig.qqData.url = STSHARE_URL;
     [UMSocialData defaultData].extConfig.qqData.title = STShareTitle;
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:STSHARE_ROOT_VC completion:nil];
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:self.viewController completion:nil];
 }
 
-+ (void)shareToQZone:(NSDictionary *)shareContent {
-    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToQzone] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:STSHARE_ROOT_VC completion:nil];
+- (void)shareToQZone:(NSDictionary *)shareContent {
+    [UMSocialData defaultData].extConfig.qzoneData.url = STSHARE_URL;
+    [UMSocialData defaultData].extConfig.qzoneData.title = STShareTitle;
+    [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToQzone] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:self.viewController completion:nil];
 }
 
-+ (void)shareToWeChatSession:(NSDictionary *)shareContent {
+- (void)shareToWeChatSession:(NSDictionary *)shareContent {
     [UMSocialData defaultData].extConfig.wechatSessionData.url = STSHARE_URL;
     [UMSocialData defaultData].extConfig.wechatSessionData.title = STShareTitle;
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:STSHARE_ROOT_VC completion:NULL];
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:self.viewController completion:NULL];
 }
 
-+ (void)shareToWeChatTimeline:(NSDictionary *)shareContent {
+- (void)shareToWeChatTimeline:(NSDictionary *)shareContent {
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = STSHARE_URL;
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = STShareTitle;
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:STSHARE_ROOT_VC completion:nil];
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:self.viewController completion:nil];
 }
 
-+ (void)shareToWeibo:(NSDictionary *)shareContent {
+- (void)shareToWeibo:(NSDictionary *)shareContent {
     [[UMSocialControllerService defaultControllerService] setShareText:STSHARE_CONTENT shareImage:STSHARE_IMAGE socialUIDelegate:nil];
-    [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina].snsClickHandler(STSHARE_ROOT_VC ,[UMSocialControllerService defaultControllerService], YES);
+    [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToSina].snsClickHandler(self.viewController ,[UMSocialControllerService defaultControllerService], YES);
+}
+
+- (void)shareToMessage:(NSDictionary *)shareContent {
+    if( [MFMessageComposeViewController canSendText]) {
+        MFMessageComposeViewController * controller = [[MFMessageComposeViewController alloc] init];
+        controller.navigationBar.tintColor = [UIColor redColor];
+        controller.body = [NSString stringWithFormat:@"%@ %@", STSHARE_CONTENT, STSHARE_URL];
+        controller.messageComposeDelegate = self;
+        [self.viewController presentViewController:controller animated:YES completion:nil];
+        [[[[controller viewControllers] lastObject] navigationItem] setTitle:STShareTitle];//修改短信界面标题
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示信息"
+                                                        message:@"该设备不支持短信功能"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+    }
+}
+
+#pragma mark - MFMessageComposeViewControllerDelegate
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    [controller.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

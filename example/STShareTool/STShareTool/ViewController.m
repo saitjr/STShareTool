@@ -13,6 +13,8 @@
 
 - (IBAction)popoverButtonTapped:(UIButton *)sender;
 
+@property (strong, nonatomic) STShareTool *shareTool;
+
 @end
 
 @implementation ViewController
@@ -26,7 +28,14 @@
     NSDictionary *shareContent = @{STShareContentKey : @"SwiftGG 最帅",
                                    STShareImageKey : [UIImage imageNamed:@"60"],
                                    STShareURLKey : @"http://www.swift.gg"};
-    [STShareTool presentShareViewController:shareContent sender:sender];
+    [self.shareTool shareToQQ:shareContent];
+}
+
+- (STShareTool *)shareTool {
+    if (!_shareTool) {
+        _shareTool = [STShareTool toolWithViewController:self];
+    }
+    return _shareTool;
 }
 
 @end
