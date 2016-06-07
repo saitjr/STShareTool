@@ -92,7 +92,7 @@
         controller.body = [NSString stringWithFormat:@"%@ %@", STSHARE_CONTENT, STSHARE_URL];
         controller.messageComposeDelegate = self;
         [self.viewController presentViewController:controller animated:YES completion:nil];
-        [[[[controller viewControllers] lastObject] navigationItem] setTitle:STShareTitle];//修改短信界面标题
+        [[[[controller viewControllers] lastObject] navigationItem] setTitle:STShareTitle];
     }
 }
 
@@ -110,16 +110,16 @@
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
     switch (result) {
-        case MFMailComposeResultCancelled: // 用户取消编辑
+        case MFMailComposeResultCancelled:
             NSLog(@"Mail send canceled...");
             break;
-        case MFMailComposeResultSaved: // 用户保存邮件
+        case MFMailComposeResultSaved:
             NSLog(@"Mail saved...");
             break;
-        case MFMailComposeResultSent: // 用户点击发送
+        case MFMailComposeResultSent:
             NSLog(@"Mail sent...");
             break;
-        case MFMailComposeResultFailed: // 用户尝试保存或发送邮件失败
+        case MFMailComposeResultFailed:
             NSLog(@"Mail send errored: %@...", [error localizedDescription]);
             break;
     }
