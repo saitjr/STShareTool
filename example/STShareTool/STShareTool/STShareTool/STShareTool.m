@@ -101,7 +101,7 @@
         MFMailComposeViewController *mailCompose = [[MFMailComposeViewController alloc] init];
         [mailCompose setMailComposeDelegate:self];
         [mailCompose setSubject:STShareTitle];
-        [mailCompose setMessageBody:STSHARE_CONTENT isHTML:NO];
+        [mailCompose setMessageBody:[NSString stringWithFormat:@"%@ %@", STSHARE_CONTENT, STSHARE_URL] isHTML:NO];
         [self.viewController presentViewController:mailCompose animated:YES completion:nil];
     }
 }
@@ -123,7 +123,6 @@
             NSLog(@"Mail send errored: %@...", [error localizedDescription]);
             break;
     }
-    // 关闭邮件发送视图
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
