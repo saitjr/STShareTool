@@ -28,7 +28,7 @@
     NSDictionary *shareContent = @{STShareContentKey : @"SwiftGG 最帅",
                                    STShareImageKey : [UIImage imageNamed:@"60"],
                                    STShareURLKey : @"http://www.swift.gg"};
-    [self.shareTool shareToQQ:shareContent];
+    [self.shareTool shareToMail:shareContent];
 }
 
 - (STShareTool *)shareTool {

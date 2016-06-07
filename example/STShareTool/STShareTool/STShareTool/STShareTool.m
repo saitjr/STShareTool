@@ -18,13 +18,15 @@
 #define STSHARE_URL shareContent[STShareURLKey]
 #define STSHARE_CONCAT_METHOD_NAME(name) [NSString stringWithFormat:@"shareTo%@:", name]
 
-@interface STShareTool () <MFMessageComposeViewControllerDelegate>
+@interface STShareTool () <MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) UIViewController *viewController;
 
 @end
 
 @implementation STShareTool
+
+#pragma mark - Initialize
 
 + (void)initialize {
     [super initialize];
@@ -45,6 +47,14 @@
     tool.viewController = viewController;
     return tool;
 }
+
+#pragma mark - Public Methods
+
++ (BOOL)canSendMail {
+    return [MFMailComposeViewController canSendMail];
+}
+
+#pragma mark - Share Implementation
 
 - (void)shareToQQ:(NSDictionary *)shareContent {
     [UMSocialData defaultData].extConfig.qqData.url = STSHARE_URL;
@@ -76,21 +86,45 @@
 }
 
 - (void)shareToMessage:(NSDictionary *)shareContent {
-    if( [MFMessageComposeViewController canSendText]) {
+    if ([MFMessageComposeViewController canSendText]) {
         MFMessageComposeViewController * controller = [[MFMessageComposeViewController alloc] init];
         controller.navigationBar.tintColor = [UIColor redColor];
         controller.body = [NSString stringWithFormat:@"%@ %@", STSHARE_CONTENT, STSHARE_URL];
         controller.messageComposeDelegate = self;
         [self.viewController presentViewController:controller animated:YES completion:nil];
         [[[[controller viewControllers] lastObject] navigationItem] setTitle:STShareTitle];//修改短信界面标题
-    } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示信息"
-                                                        message:@"该设备不支持短信功能"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"确定"
-                                              otherButtonTitles:nil, nil];
-        [alert show];
     }
+}
+
+- (void)shareToMail:(NSDictionary *)shareContent {
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController *mailCompose = [[MFMailComposeViewController alloc] init];
+        [mailCompose setMailComposeDelegate:self];
+        [mailCompose setSubject:STShareTitle];
+        [mailCompose setMessageBody:STSHARE_CONTENT isHTML:NO];
+        [self.viewController presentViewController:mailCompose animated:YES completion:nil];
+    }
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    switch (result) {
+        case MFMailComposeResultCancelled: // 用户取消编辑
+            NSLog(@"Mail send canceled...");
+            break;
+        case MFMailComposeResultSaved: // 用户保存邮件
+            NSLog(@"Mail saved...");
+            break;
+        case MFMailComposeResultSent: // 用户点击发送
+            NSLog(@"Mail sent...");
+            break;
+        case MFMailComposeResultFailed: // 用户尝试保存或发送邮件失败
+            NSLog(@"Mail send errored: %@...", [error localizedDescription]);
+            break;
+    }
+    // 关闭邮件发送视图
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - MFMessageComposeViewControllerDelegate

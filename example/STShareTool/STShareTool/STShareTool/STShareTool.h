@@ -31,10 +31,13 @@ static NSString * const STShareUMAppKey = @"507fcab25270157b37000010";
 
 + (instancetype)toolWithViewController:(UIViewController *)viewController;
 
++ (BOOL)canSendMail;
+
 - (void)shareToQQ:(NSDictionary *)shareContent;
 - (void)shareToQZone:(NSDictionary *)shareContent;
 - (void)shareToWeChatSession:(NSDictionary *)shareContent;
 - (void)shareToWeChatTimeline:(NSDictionary *)shareContent;
 - (void)shareToWeibo:(NSDictionary *)shareContent;
+- (void)shareToMail:(NSDictionary *)shareContent;
 
 @end
