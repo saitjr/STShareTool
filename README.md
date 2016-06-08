@@ -1,6 +1,6 @@
 # STShareTool
 
-常见的社会化分享，包含（QQ、QQ控件、微信好友、微信朋友圈、新浪微博）
+常见的社会化分享，包含（QQ、QQ控件、微信好友、微信朋友圈、新浪微博、短信、邮箱）
 
 没有一次和三方打交道是愉快的，尤其是三方分享、三方登录、三方支付、三方地图等等。这些都是非常常用的组件，iOS9 出来以后，又对安全性做了要求，配置相当繁琐，所以干脆封装了，记录一下流程。
 
@@ -131,30 +131,63 @@ static NSString * const STShareWechatAppSecret = @"";
 static NSString * const STShareUMAppKey = @"";
 ```
 
-使用的时候，只需要一行代码就可以。（当然，还需要一行来配置要分享的内容...
+### 调用
+
+#### 实例化 STShareTool
+
+界面搞定以后，初始化 `STShareTool` 对象：
+
+```objective-c
+self.shareTool = [STShareTool toolWithViewController:self];
+```
+
+需要传入一个 `UIViewController` 对象，因为短信和邮件分享需要 view controller 推出界面。
+
+#### 分享的方法列表
 
 ``` objective-c
+- (void)shareToQQ:(NSDictionary *)shareContent;
+- (void)shareToQZone:(NSDictionary *)shareContent;
+- (void)shareToWeChatSession:(NSDictionary *)shareContent;
+- (void)shareToWeChatTimeline:(NSDictionary *)shareContent;
+- (void)shareToWeibo:(NSDictionary *)shareContent;
+- (void)shareToMail:(NSDictionary *)shareContent;
+```
+
+#### 分享
+
+```objective-c
 NSDictionary *shareContent = @{STShareContentKey : @"SwiftGG 最帅",
                                STShareImageKey : [UIImage imageNamed:@"60"],
                                STShareURLKey : @"http://www.swift.gg"};
-[STShareTool presentShareViewController:shareContent sender:sender];
+[self.shareTool shareToQQ:shareContent];
 ```
 
-### 自定义界面
+因为名字都是 `shareTo...`，所以可以用 `performSelector:` 来调用。
 
-以上直接 `presentShareViewController:` 的是用的 `UIActivityViewController` 进行分享。如果想要自定义，那也 ok，所有方法都是现成的，你只需要自己写一个界面即可。
+#### 短信与邮件分享
 
-界面搞定以后，调用 `STShareTool` 的以下方法即可进行各个平台的分享：
+因为可能出现系统不支持短信，或未配置邮箱的情况，所以仅在以下情况能发送：
 
-``` objective-c
-+ (void)shareToQQ:(NSDictionary *)shareContent;
-+ (void)shareToQZone:(NSDictionary *)shareContent;
-+ (void)shareToWeChatSession:(NSDictionary *)shareContent;
-+ (void)shareToWeChatTimeline:(NSDictionary *)shareContent;
-+ (void)shareToWeibo:(NSDictionary *)shareContent;
+```objective-c
+[MFMessageComposeViewController canSendText]; // 支持短信
+[MFMailComposeViewController canSendMail]; // 支持邮箱
 ```
 
-对，你没看错，全都是类方法，直接用 `STShareTool` 进行调用，并且！命名都一毛一样有木有，全都是 `shareTo...`，所以，可以用循环来 `performSelector` 。
+因为以上分享的方法并没有返回值，所以如果不支持邮箱，就需要自己外部判断，`STShareTool` 提供判断是否支持邮箱的类方法：
+
+```objective-c
++ (BOOL)canSendMail;
+```
+
+自行判断是否支持邮箱：
+
+```objective-c
+if (![STShareTool canSendMail]) {
+    [[[UIAlertView alloc] initWithTitle:@"提示" message:@"请配置邮箱" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
+    return;
+}
+```
 
 ## 回调
 
