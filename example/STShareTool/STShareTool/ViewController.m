@@ -25,7 +25,8 @@
 }
 
 - (IBAction)popoverButtonTapped:(UIButton *)sender {
-    NSDictionary *shareContent = @{STShareContentKey : @"SwiftGG 最帅",
+    NSDictionary *shareContent = @{STShareTitleKey : @"SwiftGG",
+                                   STShareContentKey : @"SwiftGG 最帅",
                                    STShareImageKey : [UIImage imageNamed:@"60"],
                                    STShareURLKey : @"http://www.swift.gg"};
     [self.shareTool shareToMail:shareContent];

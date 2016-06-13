@@ -13,6 +13,7 @@
 #import "UMSocialSinaSSOHandler.h"
 #import <MessageUI/MessageUI.h>
 
+#define STSHARE_TITLE shareContent[STShareTitleKey]
 #define STSHARE_IMAGE shareContent[STShareImageKey]
 #define STSHARE_CONTENT shareContent[STShareContentKey]
 #define STSHARE_URL shareContent[STShareURLKey]
@@ -58,25 +59,25 @@
 
 - (void)shareToQQ:(NSDictionary *)shareContent {
     [UMSocialData defaultData].extConfig.qqData.url = STSHARE_URL;
-    [UMSocialData defaultData].extConfig.qqData.title = STShareTitle;
+    [UMSocialData defaultData].extConfig.qqData.title = STSHARE_TITLE;
     [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:self.viewController completion:nil];
 }
 
 - (void)shareToQZone:(NSDictionary *)shareContent {
     [UMSocialData defaultData].extConfig.qzoneData.url = STSHARE_URL;
-    [UMSocialData defaultData].extConfig.qzoneData.title = STShareTitle;
+    [UMSocialData defaultData].extConfig.qzoneData.title = STSHARE_TITLE;
     [[UMSocialDataService defaultDataService] postSNSWithTypes:@[UMShareToQzone] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:self.viewController completion:nil];
 }
 
 - (void)shareToWeChatSession:(NSDictionary *)shareContent {
     [UMSocialData defaultData].extConfig.wechatSessionData.url = STSHARE_URL;
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = STShareTitle;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = STSHARE_TITLE;
     [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:self.viewController completion:NULL];
 }
 
 - (void)shareToWeChatTimeline:(NSDictionary *)shareContent {
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = STSHARE_URL;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = STShareTitle;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = STSHARE_TITLE;
     [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:STSHARE_CONTENT image:STSHARE_IMAGE location:nil urlResource:nil presentedController:self.viewController completion:nil];
 }
 
@@ -92,7 +93,7 @@
         controller.body = [NSString stringWithFormat:@"%@ %@", STSHARE_CONTENT, STSHARE_URL];
         controller.messageComposeDelegate = self;
         [self.viewController presentViewController:controller animated:YES completion:nil];
-        [[[[controller viewControllers] lastObject] navigationItem] setTitle:STShareTitle];
+        [[[[controller viewControllers] lastObject] navigationItem] setTitle:STSHARE_TITLE];
     }
 }
 
@@ -100,7 +101,7 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailCompose = [[MFMailComposeViewController alloc] init];
         [mailCompose setMailComposeDelegate:self];
-        [mailCompose setSubject:STShareTitle];
+        [mailCompose setSubject:STSHARE_TITLE];
         [mailCompose setMessageBody:[NSString stringWithFormat:@"%@ %@", STSHARE_CONTENT, STSHARE_URL] isHTML:NO];
         [self.viewController presentViewController:mailCompose animated:YES completion:nil];
     }
