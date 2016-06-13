@@ -157,9 +157,10 @@ self.shareTool = [STShareTool toolWithViewController:self];
 #### 分享
 
 ```objective-c
-NSDictionary *shareContent = @{STShareContentKey : @"SwiftGG 最帅",
-                               STShareImageKey : [UIImage imageNamed:@"60"],
-                               STShareURLKey : @"http://www.swift.gg"};
+NSDictionary *shareContent = @{STShareTitleKey : @"SwiftGG",
+                                   STShareContentKey : @"SwiftGG 最帅",
+                                   STShareImageKey : [UIImage imageNamed:@"60"],
+                                   STShareURLKey : @"http://www.swift.gg"};
 [self.shareTool shareToQQ:shareContent];
 ```
 
