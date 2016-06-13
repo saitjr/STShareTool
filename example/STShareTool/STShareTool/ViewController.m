@@ -29,7 +29,7 @@
                                    STShareContentKey : @"SwiftGG 最帅",
                                    STShareImageKey : [UIImage imageNamed:@"60"],
                                    STShareURLKey : @"http://www.swift.gg"};
-    [self.shareTool shareToMail:shareContent];
+    [self.shareTool shareToQQ:shareContent];
 }
 
 - (STShareTool *)shareTool {
