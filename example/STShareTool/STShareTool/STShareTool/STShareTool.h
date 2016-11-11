@@ -29,6 +29,9 @@ static NSString * const STShareUMAppKey = @"507fcab25270157b37000010";
 
 @interface STShareTool : NSObject
 
+@property (nonatomic, copy) dispatch_block_t success; ///< 成功回调
+@property (nonatomic, copy) dispatch_block_t failure; ///< 失败回调
+
 + (instancetype)toolWithViewController:(UIViewController *)viewController;
 
 + (BOOL)canSendMail;

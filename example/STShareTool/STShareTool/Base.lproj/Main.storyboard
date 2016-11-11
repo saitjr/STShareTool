@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,23 +18,39 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZh-K3-iS6">
-                                <rect key="frame" x="277" y="285" width="46" height="30"/>
-                                <state key="normal" title="弹出"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pUm-zp-zRd">
+                                <rect key="frame" x="20" y="219.5" width="335" height="29"/>
+                                <segments>
+                                    <segment title="QQ"/>
+                                    <segment title="QZone"/>
+                                    <segment title="微信"/>
+                                    <segment title="朋友圈"/>
+                                    <segment title="微博"/>
+                                    <segment title="邮件"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHL-ps-zM0">
+                                <rect key="frame" x="172" y="418.5" width="31" height="30"/>
+                                <state key="normal" title="分享"/>
                                 <connections>
-                                    <action selector="popoverButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WII-T4-XEd"/>
+                                    <action selector="shareButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="w6r-xc-i2U"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="nZh-K3-iS6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="D5R-nu-4zx"/>
-                            <constraint firstItem="nZh-K3-iS6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gzC-c7-jqI"/>
+                            <constraint firstItem="pUm-zp-zRd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="68j-Kt-3xo"/>
+                            <constraint firstItem="pUm-zp-zRd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="EID-bg-lbv"/>
+                            <constraint firstItem="EHL-ps-zM0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="100" id="bFm-wL-WFG"/>
+                            <constraint firstItem="EHL-ps-zM0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dR9-IA-Kly"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="segmentControl" destination="pUm-zp-zRd" id="sY5-yD-kjK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
